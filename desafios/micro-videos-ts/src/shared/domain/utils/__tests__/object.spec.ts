@@ -2,6 +2,12 @@ import { deepFreeze } from "../object";
 
 describe('object Unit Tests', () => {
 
+  it('should be null', () => {
+    const obj = deepFreeze(null);
+
+    expect(obj).toBeNull();
+  })
+
   it('should not freeze a scalar value', () => {
     const str = deepFreeze('');
     expect(typeof str).toBe('string');
@@ -22,7 +28,8 @@ describe('object Unit Tests', () => {
         deep: {
           prop2: 'value2', 
           prop3: new Date()
-        }
+        },
+        other: null,
       });
 
       expect(() => {
@@ -34,6 +41,7 @@ describe('object Unit Tests', () => {
       }).toThrow("Cannot assign to read only property 'prop2' of object '#<Object>'");
 
       expect(obj.deep.prop3).toBeInstanceOf(Date);
+      
 
   });
 });

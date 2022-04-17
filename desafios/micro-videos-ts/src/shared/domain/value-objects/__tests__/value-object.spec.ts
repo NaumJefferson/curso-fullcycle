@@ -17,6 +17,7 @@ describe('ValueObject Unit Tests', () => {
     const date = new Date();
     let arrange = [
       {received: "", expected: ""},
+      {received: null, expected: "null"},
       {received: "fake test", expected: "fake test"},
       {received: 0, expected: "0"},
       {received: 1, expected: "1"},

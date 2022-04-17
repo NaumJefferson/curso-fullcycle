@@ -3,24 +3,33 @@ import { omit } from 'lodash';
 import { UniqueEntityId } from '../../../shared/domain/value-objects/unique-entity-id.vo';
 
 describe('Category Tests', () => {
-  test('constructor of category with only name', () => {
-    const category = new Category({
+
+  beforeEach(() => {
+    Category.validate = jest.fn();
+  });
+
+  test('constructor of category', () => {
+
+    let category = new Category({
       name: 'Movie',
     });
 
     let props = omit(category.props, 'created_at');
+
+    expect(Category.validate).toHaveBeenCalled();
+
     expect(props).toStrictEqual({
       name: 'Movie',
       description: null,
       is_active: true,
     });
     expect(category.props.created_at).toBeInstanceOf(Date);
-  });
 
-  test('constructor of category with all params', () => {
+
+
     const created_at = new Date();
 
-    const category = new Category({
+    category = new Category({
       name: 'Movie',
       description: 'some description',
       is_active: false,
@@ -34,6 +43,7 @@ describe('Category Tests', () => {
       created_at,
     });
   });
+
 
   test('id field', () => {
     type CategoryData = { props: CategoryProperties; id?: UniqueEntityId };
@@ -54,12 +64,15 @@ describe('Category Tests', () => {
     });
   });
 
-  test('getter of name props', () => {
+  test('getter and setter of name props', () => {
     const category = new Category({
       name: 'Movie',
     });
 
     expect(category.name).toBe('Movie');
+
+    category['name'] = 'other name';
+    expect(category.name).toBe('other name');
   });
 
   test('getter and setter of description props', () => {
@@ -139,6 +152,7 @@ describe('Category Tests', () => {
 
     category.update('new name', 'new description');
 
+    expect(Category.validate).toHaveBeenCalledTimes(2);
     expect(category.props.name).toBe('new name');
     expect(category.props.description).toBe('new description');
 
@@ -149,6 +163,7 @@ describe('Category Tests', () => {
 
     category.update('new name', null);
 
+    expect(Category.validate).toHaveBeenCalledTimes(4);
     expect(category.props.name).toBe('new name');
     expect(category.props.description).toBeNull();
   });

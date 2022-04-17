@@ -8,5 +8,9 @@
   "typescript.inlayHints.enumMemberValues.enabled": true,
   "typescript.inlayHints.parameterTypes.enabled": true,
   "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
-  "typescript.inlayHints.variableTypes.enabled": true
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "material-icon-theme.folders.associations": {
+    "*.int-spec.ts": "test-ts"
+  },
+  "jestrunner.codeLensSelector": "**/*.{test,spec,int-spec}.{js,jsx,ts,tsx}"
 }

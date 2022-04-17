@@ -1,4 +1,6 @@
 export function deepFreeze<T>(obj: T): Readonly<T> {
+  if(obj === null) return obj;
+  
   const propNames = Object.getOwnPropertyNames(obj);
 
   for(const name of propNames) {
