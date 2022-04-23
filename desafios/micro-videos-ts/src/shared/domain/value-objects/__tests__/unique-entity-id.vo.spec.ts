@@ -7,7 +7,7 @@ import { UniqueEntityId } from '../unique-entity-id.vo';
 //   return jest.spyOn(UniqueEntityId.prototype as any, 'validate');
 // }
 
-describe('UniquerEntityId Unit Tests', () => {
+describe('UniqueEntityId Unit Tests', () => {
   // Descomentar essa linha caso as configuracoes do jest clearMocks seja false
   // beforeEach(() => {
   //   jest.clearAllMocks();

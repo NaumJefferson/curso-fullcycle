@@ -71,13 +71,18 @@ describe('CategoryValidator Tests', () => {
   });
 
   test('valid cases for fields', () => {
-    const arrange = [
-      {name: 'some value'},
-      {name: 'some value', description: 'some description'},
-      {name: 'some value', description: null},
-      {name: 'some value', description: undefined},
-      {name: 'some value', is_active: true},
-      {name: 'some value', is_active: false}
+    type Arrange = {
+      name: string;
+      description?: string;
+      is_active?: boolean;
+    };
+    const arrange: Arrange[] = [
+      { name: 'some value' },
+      { name: 'some value', description: 'some description' },
+      { name: 'some value', description: null },
+      { name: 'some value', description: undefined },
+      { name: 'some value', is_active: true },
+      { name: 'some value', is_active: false },
     ];
 
     arrange.forEach((item) => {

@@ -13,9 +13,10 @@ export type CategoryProperties = {
 export class Category extends Entity<CategoryProperties> {
 
   constructor(props: CategoryProperties, id?: UniqueEntityId) {
+    super(props, id);
+
     Category.validate(props);
 
-    super(props, id);
     this.description = this.props.description;
     this.is_active = this.props.is_active;
     this.props.created_at = this.props.created_at ?? new Date();
